@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Data;
 
-Console.WriteLine("Hello, World!");
 //ask for input
 Console.WriteLine("Enter 1 to create data file.");
 Console.WriteLine("Enter 2 to parse data file.");
@@ -46,5 +45,19 @@ if (resp == "1")
 }
 if (resp == "2")
 {
-    // TODO : parse data file
+    // parse data file
+    using (StreamReader sr = new StreamReader("data.txt")){
+            while (!sr.EndOfStream)
+            {
+                string? line = sr.ReadLine();
+                string dateString = line.Substring(0, line.IndexOf(","));
+                DateTime date = DateTime.Parse(dateString);
+                // display entry
+                Console.WriteLine($"Week of {date:MMM} {date:dd}, {date:yyyy}");
+                Console.WriteLine("Su Mo Tu We Th Fr Sa");
+                Console.WriteLine("-- -- -- -- -- -- --");
+            }
+            sr.Close();
+        }
+
 }
