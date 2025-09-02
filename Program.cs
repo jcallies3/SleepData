@@ -24,6 +24,8 @@ if (resp == "1")
     DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
     // random number generator
     Random rnd = new();
+    // create file
+    StreamWriter sw = new("data.txt");
 
     // loop for desired number of weeks provided by user
     while (dataDate < dataEndDate)
@@ -36,10 +38,11 @@ if (resp == "1")
             hours[i] = rnd.Next(4, 13);
         }
         // M/d/yy,#/#/#/#/#/#/#
-        Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+        sw.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
         // add 1 week to date
         dataDate = dataDate.AddDays(7);
     }
+    sw.Close();
 }
 if (resp == "2")
 {
