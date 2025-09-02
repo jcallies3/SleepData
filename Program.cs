@@ -47,15 +47,25 @@ if (resp == "2")
 {
     // parse data file
     using (StreamReader sr = new StreamReader("data.txt")){
-            while (!sr.EndOfStream)
+        while (!sr.EndOfStream)
+        {
+            // grab entry
+            string? line = sr.ReadLine();
+            // separate entry as needed
+            string dateString = line.Substring(0, line.IndexOf(","));
+            string hoursString = line.Substring(line.IndexOf(",") + 1);
+
+            DateTime date = DateTime.Parse(dateString);
+            string[] hours = hoursString.Split("|");
+            // display entry
+            Console.WriteLine($"Week of {date:MMM} {date:dd}, {date:yyyy}");
+            Console.WriteLine("Su Mo Tu We Th Fr Sa");
+            Console.WriteLine("-- -- -- -- -- -- --");
+            foreach (string hour in hours)
             {
-                string? line = sr.ReadLine();
-                string dateString = line.Substring(0, line.IndexOf(","));
-                DateTime date = DateTime.Parse(dateString);
-                // display entry
-                Console.WriteLine($"Week of {date:MMM} {date:dd}, {date:yyyy}");
-                Console.WriteLine("Su Mo Tu We Th Fr Sa");
-                Console.WriteLine("-- -- -- -- -- -- --");
+                Console.Write($"{hour} ");
+            }
+            Console.WriteLine();
             }
             sr.Close();
         }
