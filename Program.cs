@@ -22,7 +22,24 @@ if (resp == "1")
     DateTime dataEndDate = today.AddDays(-(int)today.DayOfWeek);
     // subtract # of weeks from endDate to get startDate
     DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
-    Console.WriteLine(dataDate);
+    // random number generator
+    Random rnd = new();
+
+    // loop for desired number of weeks provided by user
+    while (dataDate < dataEndDate)
+    {
+        // 7 days in a week
+        int[] hours = new int[7];
+        for (int i = 0; i < hours.Length; i++)
+        {
+            // generate random number between 4-12 inclusive
+            hours[i] = rnd.Next(4, 13);
+        }
+        // M/d/yy,#/#/#/#/#/#/#
+        Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+        // add 1 week to date
+        dataDate = dataDate.AddDays(7);
+    }
 }
 if (resp == "2")
 {
