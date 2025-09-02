@@ -61,10 +61,7 @@ if (resp == "2")
             Console.WriteLine($"Week of {date:MMM} {date:dd}, {date:yyyy}");
             Console.WriteLine("Su Mo Tu We Th Fr Sa");
             Console.WriteLine("-- -- -- -- -- -- --");
-            foreach (string hour in hours)
-            {
-                Console.Write($"{hour} ");
-            }
+            Console.WriteLine($"{hours[0],2}{hours[1],3}{hours[2],3}{hours[3],3}{hours[4],3}{hours[5],3}{hours[6],3}");
             Console.WriteLine();
             }
             sr.Close();
